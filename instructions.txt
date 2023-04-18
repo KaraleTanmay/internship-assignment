@@ -1,0 +1,36 @@
+This web-app is not limited to internship task only. This app implements QnA system for any (english) video on youtube.
+
+instructions:
+1. open the backend folder in vs code IDE.
+2. In the configure.env file paste your openai api key. It is essential for working of web-app.
+   make sure you have mongodb installed on system. To use mongodb atlas just paste the connection link in configure.env file.
+3. Open a new terminal and hit command "npm i" to install all the dependancies
+
+As pinecone servers were down and taking days to initialize index I decided to go with HNSWlib which stores embeddings on system. 
+for HNSWlib to work properly make sure you have visual studios installed on your system with c++ build tool.
+
+4. in the terminal hit command "npm start" to start the backend server. Make sure no other app is using port 8000.
+
+5. open new vs code window and open frontend folder in it.
+6. open new terminal and hit command "npm i" to install all dependancies.
+7. in the terminal hit command "npm start" to run the app in browser.
+
+How to use web app:
+1. paste url of any youtube video in form section of homepage.
+2. enter email (mailing system is implemented in backend but it's commented out. To use it paste your gamil credentials in configure.env file and remove comments in controllers)
+3. on sending successful request backend will create qna system for that video. (usually takes 2-5 minutes)
+
+	errors that may occur while creating qna system
+	1. sometimes openai servers gives "connection timeout error". in this case please make request again.
+	2. if the size of requested video is more than max limit openai gives "maxbody limit exceeded" error. this is due to openai's limit on whisper api. please try another video link.
+
+4. on successfull creation of qna system a new folder will appear in "./local/stores/" directory.
+5. for the video asked in assignment docs qna system is already created.
+
+6. to access qna system click on "go to qna page" on homepage.
+7. paste the url of same video for which you requested qna system.
+8. enter the question in inbox below it and make request.
+9. your answer will appear in box below it
+
+sometimes it takes lot of time for answer to appear. I believe it's happening due to "cors" module installed in backend which is essential to run backend and frontend on same device.
+You can disable it from app.js file in backend and test backend api on postman.
